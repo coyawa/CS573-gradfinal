@@ -1,0 +1,118 @@
+% \documentclass{proc}
+% \documentclass[journal, letterpaper]{IEEEtran}
+\documentclass[10pt,journal,compsoc]{IEEEtran}
+\usepackage{listings}
+\usepackage{fancyvrb}
+\usepackage{framed}
+\usepackage[listings,skins]{tcolorbox}
+\usepackage[skipbelow=\topskip,skipabove=\topskip]{mdframed}
+\usepackage{pbox}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{caption}
+\linespread{1.2}
+\usepackage{float}
+\setlength{\parskip}{0.4em}
+
+\mdfsetup{roundcorner=0}
+% Congyang: Added the geometry module to add the margin of bottom
+\usepackage[top=1in, bottom=1.2in, left=0.7in, right=0.7in]{geometry}
+% Congyang: Added the indent first module (and delete "\\" of every paragraph) to make it indent every paragraph.
+\usepackage{indentfirst}
+
+\begin{document}
+
+\title {\Huge Visualization Interactivity Application Research \\ on Data Journalism}
+% \textbf{}
+% \huge
+
+\author{Congyang Wang, Xiaoqun Wang, Yimin Lin \\ Department of Data Science -- Worcester Polytechnic Institute, MA, 01609 \\ Email: \{cwang8, xwang16, ylin6\}@wpi.edu}
+
+\IEEEtitleabstractindextext{%
+\begin{abstract}
+The journalism industry is growing with a very high speed with the bloom of Internet, no matter the traditional media or the emerging social media all join this information revolution in past 20 years; Meanwhile, the data science started to join this revolution in recent years. With the more and more data involved into the journalism, there is new upgrade journalism appears: the Data-Driven Journalism. The journalism content revolution start from the text-only, then, the text with pictures, finally, the text with data visualization. The FiveThirtyEight is a good representative of them. Many articles from FiveThirtyEight suggested from the data, then the editors use all kinds of visualization tools try to show the best interpret of the news to the audiences.  
+
+Unfortunately, there is no evidence shows all kinds of the visualization suit to the explain of data and news, especially for the visualization interactivity, there are many articles in data journalism carried fancy interactivity, but there may only have less readers did the interactive with the visualization [1]. 
+
+In this paper, we collected all the visualization interactivity approach, organized and analysis them. Then we designed a A/B test which use the same article from novel media with different visual interactivity to evaluate the effectiveness of different visual interactivity methods.
+\end{abstract}
+
+% Note that keywords are not normally used for peerreview papers.
+\begin{IEEEkeywords}
+XXX, XXX, XXX, \LaTeX.
+\end{IEEEkeywords}}
+
+\maketitle
+
+
+\section{Introduction}
+\large
+XXX
+
+XXX
+
+XXX
+
+\section{Related Work}
+\large
+
+- An introduction paragraph 
+    - Summarize all clusters (1-2 sentences)
+    - Describe very briefly how they inform your approach (1-2 sentences)
+- A subsection for each related work cluster (multiple paragraphs per cluster)
+    - For each subsection, introduce via a short paragraph 1-2 sentences
+    - Then cover the major themes, each in a paragraph
+    - Ensure for each paragraph, ensure that you mention either how it informs your work, or how your work differs
+    - For longer subsections, end with a summarization paragraph
+    - (Some clusters may be smaller, and require only a single, larger paragraph to capture.)
+- After all subsections, include a transition paragraph
+  - Summarize how prior work informs your current approach
+  - Remind readers of the motivation, and how it relates
+
+There is one similar research paper [1] 
+
+There is one similar research paper [3] 
+
+There is one similar research paper [5] 
+
+**DO NOT** simply summarize each paper in sentence after sentence.
+
+You need at least two background clusters for a compelling paper.
+There is a process you can follow to extract these: the annotated bibliography.
+
+\section{Experiment}
+\large
+XXX
+
+XXX
+
+XXX
+
+\section{Evaluation}
+\large
+XXX
+
+XXX
+
+XXX
+
+\section{Conclusion}
+\large
+XXX
+
+XXX
+
+XXX
+
+\begin{thebibliography}{99}
+% \large 
+\bibitem{c1} Gray, Jonathan, Liliana Bounegru, and Lucy Chambers. \textit{The Data Journalism Handbook} Oreilly \& Associates, 2012.
+\bibitem{c2} Howard J.Seltman, \textit{Experimental Design and Analysis}, Carnegie Mellon University , Department of Statistics
+\bibitem{c3} Anthony C. Robinson*, and Chris Weaver, \textit{Re-Visualization: Interactive Visualization of the Process of Visual Analysis}, GeoVISTA Center, Department of Geography, The Pennsylvania State University. 
+\bibitem{c4} Wibke Weber, Hannes Rall, \textit{Data Visualization in Online Journalism and Its Implications for the Production Process}, Information Visualisation (IV), 2012 16th International Conference.
+
+\end{thebibliography}
+% \begin{enumerate}
+% \end{enumerate}
+\end{document}
