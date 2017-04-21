@@ -2,9 +2,9 @@ CS582-17S Grad Final
 ---
 Check Point: Apr 20
 
-/code: data process code
-/paper: final paper latex
-/data: data with experiment
+**/code:** data process code  
+**/paper:** final paper latex  
+**/data:** data with experiment  
 
 
 ## Team Members:
