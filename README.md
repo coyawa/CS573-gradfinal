@@ -1,6 +1,11 @@
 CS582-17S Grad Final
 ---
-Check Point: Apr 20.
+Check Point: Apr 20
+
+/code: data process code
+/paper: final paper latex
+/data: data with experiment
+
 
 ## Team Members:
 Congyang Wang | Email: cwang8@wpi.edu   | Github: @coyawa  
