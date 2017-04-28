@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<!-- saved from url=(0061)https://projects.fivethirtyeight.com/2016-swing-the-election/ -->
+<html lang="en">
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+  <script src="https://d3js.org/d3.v3.min.js"></script>
+  <script src="https://d3js.org/topojson.v2.min.js"></script>
+  <script src="https://d3js.org/d3-geo.v1.min.js"></script>
+  <script src="js/uStates.js"></script>
+  <script src="js/map3.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+  <script src="https://d3js.org/d3-color.v1.min.js"></script>
+  <script src="https://d3js.org/d3-interpolate.v1.min.js"></script>
+  <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+  <link href="css/maptooltip.css" rel="stylesheet">
+  <link href="css/maphover.css" rel="stylesheet">
+  <link href="css/testquestion.css" rel="stylesheet">
+  <link href="css/map2layout.css" rel="stylesheet">
+  <link href="css/map3layoutandsort.css" rel="stylesheet">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Interactivity Perception Experiment | FiveThirtyEight</title>
+  <meta name="google-site-verification" content="u4S1gkGQ7IEq1C4S6i3KdYNnPhtuqfsaSIeP0Qqin68">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="What Would It Take To Flip States In The 2016 Election?">
+  <meta property="og:url" content="http://projects.fivethirtyeight.com/2016-swing-the-election/">
+  <meta property="og:description" content="See how changes in preference and turnout by different demographic groups would affect the 2016 election.">
+  <meta property="article:published_time" content="2015-12-03T14:00:00-05:00">
+  <meta property="article:modified_time" content="2016-10-05T14:40:00-04:00">
+  <meta property="og:site_name" content="FiveThirtyEight">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:image" content="https://espnfivethirtyeight.files.wordpress.com/2016/10/swingomatic-4by3.jpg">
+  <meta name="twitter:image:src" content="https://espnfivethirtyeight.files.wordpress.com/2016/10/swingomatic-4by3.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="article:publisher" content="https://www.facebook.com/FiveThirtyEight">
+  <meta property="fb:app_id" content="797620670264818">
+  <meta name="twitter:widgets:csp" content="on">
+  <meta name="twitter:maxage" content="300">
+  <meta name="twitter:site" content="FiveThirtyEight">
+  <meta name="twitter:site:id" content="2303751216">
+  <meta name="twitter:creator" content="bycoffe">
+  <meta name="twitter:creator:id" content="9737262">
+  <link rel="search" type="application/opensearchdescription+xml" href="http://fivethirtyeight.com/osd.xml" title="FiveThirtyEight">
+  <link rel="search" type="application/opensearchdescription+xml" href="https://wordpress.com/opensearch.xml" title="WordPress.com">
+  <meta name="application-name" content="FiveThirtyEight">
+  <meta name="description" content="See how changes in preference and turnout by different demographic groups would affect the 2016 election.">
+  <meta name="author" content="Aaron Bycoffe and David Wasserman">
+  <meta property="article:author" content="http://fivethirtyeight.com/contributors/aaron-bycoffe">
+  <meta name="news_keywords" content="Politics, Election 2016">
+  <link rel="author" href="http://fivethirtyeight.com/contributors/aaron-bycoffe">
+  <link rel="shortlink" href="http://53eig.ht/21wa4Aw">
+  <link rel="shortcut icon" type="image/x-icon" href="https://projects.fivethirtyeight.com/shared/favicon.ico">
+  <link rel="icon" type="image/x-icon" href="https://projects.fivethirtyeight.com/shared/favicon.ico"><link rel="apple-touch-icon" href="https://projects.fivethirtyeight.com/shared/apple-touch-icon.png">
+  <link rel="canonical" href="http://projects.fivethirtyeight.com/2016-swing-the-election/">
+  <script id="twitter-wjs" src="./indexsample/widgets.js.download"></script>
+  <script async="" type="text/javascript" src="./indexsample/gpt.js.download"></script>
+  <script async="" src="./indexsample/c"></script><script type="text/javascript">var trackingConfig = {
+    postId: "96967",
+    section: "politics",
+    primaryTag: "2016-election",
+    pageName: "2016-swing-the-election",
+    title: "What Would It Take To Flip States In The 2016 Election?",
+    author: "Aaron Bycoffe and David Wasserman",
+    authorSlug: "bycoffe_aaron",
+    fullUrl: "http://projects.fivethirtyeight.com/2016-swing-the-election/",
+    shortUrl: "http://53eig.ht/21wa4Aw",
+    twitterText: "What would it take to turn blue states red (and vice versa) in the 2016 presidential election?"
+  }</script>
+  <script async="" src="./indexsample/analytics.js.download"></script>
+  <script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+    ga('create', 'UA-60673836-2', 'auto');
+  </script>
+  <link rel="stylesheet" href="./indexsample/app.css">
+  <script src="./indexsample/pubads_impl_114.js.download" async=""></script><link rel="prefetch" href="https://tpc.googlesyndication.com/safeframe/1-0-8/html/container.html">
+</head>
+<style type="text/css">
+body {
+  font: 11px sans-serif;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+.tick line{
+    opacity: 0.2;
+  }
+.dot {
+  stroke: #000;
+}
+.container {
+    position: relative;
+    width: 1024px;
+    margin: 0 auto;
+    padding: 0;
+}
+.tooltip {
+  position: absolute;
+  width: 200px;
+  height: 28px;
+  pointer-events: none;
+}
+.container .state-charts .chart {
+    float: right;
+    width: 320px;
+    margin-top: -48px;
+    min-height: 320px;
+}
+.container .state-charts .description {
+    float: left;
+    width: 420px;
+}
+.container .state-charts {
+    max-width: 800px;
+    width: 100%;
+    margin: 0 auto 320px;
+}
+.container .state-charts .state-chart-header {
+    text-align: left;
+    border-bottom: 1px solid #999;
+    font-family: DecimaMonoPro;
+    font-size: 23px;
+    text-transform: uppercase;
+    padding: 10px 0 5px;
+    margin-bottom: 30px;
+    line-height: 28px;
+}
+
+.container .state-charts .state-chartNCEW{
+    clear: both;
+}
+.container .state-charts .state-chartCEW{
+    clear: both;
+}
+.container .state-charts .state-chartBlack{
+    clear: both;
+}
+.container .state-charts .state-chartLatino{
+    clear: both;
+}
+.container .state-charts .state-chartA{
+    clear: both;
+}
+.container .state-charts .cat {
+    clear: both;
+    font-family: DecimaMonoPro;
+    font-size: 18px;
+    text-transform: uppercase;
+    border-bottom: 1px solid #f0f0f0;
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+    width: 50%;
+}
+.container .state-charts .description p {
+    font: 14px AtlasGrotesk,Georgia,"Times New Roman",serif;
+    line-height: 1.5em;
+}
+.tooltipPrompt{
+            font-family:simsun;
+            font-size:14px;
+            width:120;
+            height:auto;
+            position:absolute;
+            text-align:center;
+            border-style:solid;
+            border-width:1px;
+            background-color:white;
+            border-radius:5px;
+        }
+</style>
+
+<body>
+  <div id="ad-wrapper-overlay" class="ad-wrapper" style="display:none">
+  	  <div id="ad-Overlay" class="ad-overlay" data-google-query-id="CISPzeidvtMCFYiRaQods5sKGQ" style="display: none;">
+        <div id="google_ads_iframe_/6444/fivethirtyeight.com/politics/interactives_4__container__" style="border: 0pt none;">
+          <iframe id="google_ads_iframe_/6444/fivethirtyeight.com/politics/interactives_4" title="3rd party ad content" name="google_ads_iframe_/6444/fivethirtyeight.com/politics/interactives_4" width="1" height="1" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" style="border: 0px; vertical-align: bottom;" src="./indexsample/saved_resource.html"></iframe>
+        </div>
+      </div>
+  </div>
+  <div id="ad-wrapper-wallpaper" class="ad-wrapper" style="display:none">
+  	<div id="ad-Wallpaper" class="ad-wallpaper" style="display: none;">
+      <div id="google_ads_iframe_/6444/fivethirtyeight.com/politics/interactives_0__container__" style="border: 0pt none;">
+        <iframe id="google_ads_iframe_/6444/fivethirtyeight.com/politics/interactives_0" title="3rd party ad content" name="google_ads_iframe_/6444/fivethirtyeight.com/politics/interactives_0" width="1680" height="1050" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" style="border: 0px; vertical-align: bottom;" src="./indexsample/saved_resource(1).html"></iframe>
+      </div>
+    </div>
+  </div>
+  <div id="ad">
+    <div id="ad-wrapper" class="ad-wrapper" style="display: table-cell;">
+	    <div id="ad-Banner" class="ad-banner" style="display: none;">
+        <div id="google_ads_iframe_/6444/fivethirtyeight.com/politics/interactives_1__container__" style="border: 0pt none;">
+          <iframe id="google_ads_iframe_/6444/fivethirtyeight.com/politics/interactives_1" title="3rd party ad content" name="google_ads_iframe_/6444/fivethirtyeight.com/politics/interactives_1" width="1280" height="100" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" style="border: 0px; vertical-align: bottom;" src="./indexsample/saved_resource(2).html"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+  <header class="vertical-politics">
+    <div class="header-wrapper">
+      <a href="http://fivethirtyeight.com/" class="logo">
+        <img width="163" height="20" alt="FiveThirtyEight" src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0ibWFzdGhlYWQiIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHZpZXdCb3g9IjAgMCAzMzAuMyAzOCIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAwIDAgMzMwLjMgMzgiIHhtbDpzcGFjZT0icHJlc2VydmUiPgo8cGF0aCBmaWxsPSIjRkZGRkZGIiBkPSJNMzMuMiwwLjJoMTcuM3Y1LjVoLTExdjcuNGgxMC4ydjUuNUgzOS41djExLjdoLTYuM1YwLjJ6Ii8+CjxwYXRoIGZpbGw9IiNGRkZGRkYiIGQ9Ik01NC4xLDI1LjFoMy4zVjEyLjdoLTMuM1Y3LjZoOS4ydjE3LjVoMy4xdjUuMUg1NC4xVjI1LjF6IE01Ny40LDUuOFYwLjJoNS45djUuNkg1Ny40eiIvPgo8cGF0aCBmaWxsPSIjRkZGRkZGIiBkPSJNNjkuOCwxOC45VjcuNmg1Ljl2OS44bDIuNiw3LjRoMC42bDIuNi03LjRWNy42aDUuOXYxMS4zbC00LjcsMTEuM2gtOC4yTDY5LjgsMTguOXoiLz4KPHBhdGggZmlsbD0iI0ZGRkZGRiIgZD0iTTEwOS4xLDMwLjJIMTAwYy01LjgsMC04LjUtMi40LTguNS04LjF2LTYuNGMwLTUuMywyLjctOC41LDguOC04LjVjNi42LDAsOC44LDMsOC44LDkuM3Y0LjZIOTcuM3YxLjQKCWMwLDEuOCwwLjksMi42LDIuNiwyLjZoOS4yVjMwLjJ6IE05Ny4zLDE2LjhoNS45di0xLjVjMC0xLjgtMC44LTMuNC0zLTMuNGMtMiwwLTMsMS4xLTMsMy40VjE2Ljh6Ii8+CjxwYXRoIGZpbGw9IiNGRkZGRkYiIGQ9Ik0xMTguNSw1LjdoLTYuOFYwLjJoMTkuOXY1LjVoLTYuOHYyNC41aC02LjNWNS43eiIvPgo8cGF0aCBmaWxsPSIjRkZGRkZGIiBkPSJNMTQxLjMsMzAuMmgtNS45di0zMGg1Ljl2MTAuM2MwLjgtMS45LDIuOS0zLjMsNS40LTMuM2M0LjQsMCw2LjQsMi4yLDYuNCw3LjZ2MTUuNGgtNS45VjE1CgljMC0yLjItMS0zLjEtMy0zLjFjLTIsMC0zLDAuOS0zLDMuMVYzMC4yeiIvPgo8cGF0aCBmaWxsPSIjRkZGRkZGIiBkPSJNMTU4LDI1LjFoMy4zVjEyLjdIMTU4VjcuNmg5LjJ2MTcuNWgzLjF2NS4xSDE1OFYyNS4xeiBNMTYxLjMsNS44VjAuMmg1Ljl2NS42SDE2MS4zeiIvPgo8cGF0aCBmaWxsPSIjRkZGRkZGIiBkPSJNMTc1LjEsMzAuMlY3LjZoNS43djIuOWMwLjgtMS43LDIuNi0yLjksNS4xLTIuOWgxLjh2NS4xaC00Yy0yLDAtMi42LDAuOC0yLjYsMi45djE0LjZIMTc1LjF6Ii8+CjxwYXRoIGZpbGw9IiNGRkZGRkYiIGQ9Ik0yMDUuNSwzMC4yaC00LjNjLTUsMC03LjYtMi40LTcuNi03LjZ2LTkuOWgtMy40VjcuNmgzLjRWMS44aDUuOXY1LjhoNnY1LjFoLTZ2MTAuMWMwLDEuNiwwLjgsMi4zLDIuNywyLjMKCWgzLjNWMzAuMnoiLz4KPHBhdGggZmlsbD0iI0ZGRkZGRiIgZD0iTTIxMi41LDM4bDMuMi02LjdsLTUuNi0xMi40VjcuNmg1Ljl2OS44bDIuNiw3LjJoMC42bDIuNi03LjJWNy42aDUuOXYxMS4zTDIxOS4xLDM4SDIxMi41eiIvPgo8cGF0aCBmaWxsPSIjRkZGRkZGIiBkPSJNMjMzLjUsMC4ySDI1MXY1LjVoLTExLjJ2Ni42SDI1MHY1LjVoLTEwLjJ2N0gyNTF2NS41aC0xNy41VjAuMnoiLz4KPHBhdGggZmlsbD0iI0ZGRkZGRiIgZD0iTTI1NS41LDI1LjFoMy4zVjEyLjdoLTMuM1Y3LjZoOS4ydjE3LjVoMy4xdjUuMWgtMTIuM1YyNS4xeiBNMjU4LjgsNS44VjAuMmg1Ljl2NS42SDI1OC44eiIvPgo8cGF0aCBmaWxsPSIjRkZGRkZGIiBkPSJNMjY5LjQsMzQuNnYtMS4yaDExLjljMS40LDAsMS44LTAuMywxLjgtMXYtMC4yYzAtMC44LTAuNC0xLTEuOC0xaC05LjVWMjlsMy4yLTQuOWMtMy43LTEtNS4yLTMuNy01LjItNy42Cgl2LTAuOGMwLTUuMywyLjYtOC41LDkuNC04LjVjMS42LDAsMywwLjIsNC4yLDAuNWwyLjYtMy44bDMuOSwyLjRsLTIuNyw0YzEsMS40LDEuNCwzLjIsMS40LDUuM3YwLjhjMCw0LjktMi40LDcuOC04LjYsOC4xbC0xLjQsMi4xCgloNC40YzQuMiwwLDYuMiwyLDYuMiw1LjZ2MC4xYzAsMy42LTIsNS42LTYuMiw1LjZoLTkuMUMyNzAuNywzOCwyNjkuNCwzNi45LDI2OS40LDM0LjZ6IE0yODIuNywxNi45di0xLjZjMC0yLjMtMS0zLjQtMy42LTMuNAoJYy0yLjYsMC0zLjYsMS4xLTMuNiwzLjR2MS42YzAsMi4zLDEsMy40LDMuNiwzLjRDMjgxLjcsMjAuNCwyODIuNywxOS4zLDI4Mi43LDE2Ljl6Ii8+CjxwYXRoIGZpbGw9IiNGRkZGRkYiIGQ9Ik0yOTkuMywzMC4yaC01Ljl2LTMwaDUuOXYxMC4zYzAuOC0xLjksMi45LTMuMyw1LjQtMy4zYzQuNCwwLDYuNCwyLjIsNi40LDcuNnYxNS40aC01LjlWMTUKCWMwLTIuMi0xLTMuMS0zLTMuMWMtMiwwLTMsMC45LTMsMy4xVjMwLjJ6Ii8+CjxwYXRoIGZpbGw9IiNGRkZGRkYiIGQ9Ik0zMzAuMywzMC4yaC00LjNjLTUsMC03LjYtMi40LTcuNi03LjZ2LTkuOUgzMTVWNy42aDMuNFYxLjhoNS45djUuOGg2djUuMWgtNnYxMC4xYzAsMS42LDAuOCwyLjMsMi43LDIuMwoJaDMuM1YzMC4yeiIvPgo8cGF0aCBmaWxsPSIjRkZGRkZGIiBkPSJNMjIuMSwwLjFjLTAuMy0wLjEtMC43LTAuMS0wLjksMC4ybC05LjksOS45TDEuNCwwLjNDMS4yLDAsMC44LTAuMSwwLjUsMC4xQzAuMiwwLjIsMCwwLjUsMCwwLjh2MTQuNgoJYzAsMy4yLDAuOCw1LjEsMy4yLDcuNGw3LjQsNy40YzAuMiwwLjIsMC41LDAuMywwLjcsMC4zYzAuMywwLDAuNS0wLjEsMC43LTAuM2w3LjQtNy40YzIuNC0yLjQsMy4yLTQuMywzLjItNy40VjAuOAoJQzIyLjYsMC41LDIyLjQsMC4yLDIyLjEsMC4xeiBNMjAuOCwxNS41YzAsMi43LTAuNiw0LjEtMi43LDYuMmwtNC42LDQuNkwxMywyNS44aDBjMCwwLDAsMCwwLDBsLTAuNi0wLjZjLTAuMy0wLjMtMC43LTAuNC0xLjEtMC40CgljLTAuNCwwLTAuOCwwLjEtMS4xLDAuNGwtMC42LDAuNmMwLDAsMCwwLDAsMGgwbC0wLjUsMC41bC00LjYtNC42Yy0yLTItMi43LTMuNS0yLjctNi4yVjcuNEw0LjYsNmw2LjIsNi4yYzAuMSwwLjEsMC40LDAuMiwwLjYsMC4yCgljMC4yLDAsMC40LTAuMSwwLjYtMC4yTDE4LDZsMi44LDEuNFYxNS41eiBNNS41LDE1LjhMMS44LDE1YzEuMiwxLjMsMy44LDMuNyw2LjEsNS4zbDAtMi4yQzcuOSwxNi43LDcuNywxNi4zLDUuNSwxNS44eiBNMTQuNywxOC4xCglsMCwyLjJjMi4zLTEuNiw0LjktNCw2LjEtNS4zTDE3LDE1LjhDMTQuOSwxNi4zLDE0LjcsMTYuNywxNC43LDE4LjF6Ii8+Cjwvc3ZnPg==">
+      </a>
+      <nav> </nav>
+      <div class="social-links">
+        <a id="twitter-sharer" href="https://projects.fivethirtyeight.com/2016-swing-the-election/#" target="_blank" class="social share-twitter">
+          <div class="icon icon-twitter"></div>
+        </a>
+        <a id="facebook-sharer" href="https://projects.fivethirtyeight.com/2016-swing-the-election/#" target="_blank" class="social share-facebook">
+          <div class="icon icon-facebook"></div>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div id="intro">
+      <div class="timestamp-container">
+      <p class="timestamp">UPDATED 12:40 AM EDT | Apr 25, 2017</p>
+      </div>
+      <h1>Interactivity Perception <br><br>Experiment</h1>
+      <h2 class="article-subtitle">
+        Play with those visualizations and fullfill our text.
+      </h2>
+        <p class="byline">By
+        <span class="author">
+          <a href="https://github.com/YiminLin1994">Yimin Lin</a>
+        </span> and
+        <span class="author">
+          <a href="https://github.com/ntugigolo">Xiaoqun Wang</a>
+        </span> and
+        <span class="author">
+          <a href="https://github.com/coyawa">Congyang Wang</a>
+        </span>
+      </p>
+    </div>
+  </div>
+  <div class = "container">
+    <div id = "sliders" >
+      <h2> Sort by Attribute</h2>
+      <ul>
+          <li>
+              <input type="radio" id="eduedwhite" name="selector"  value="NON-COLLEGE-EDUCATED WHITE">
+              <label for="eduedwhite">Edued White</label>
+              <div class = "check"></div>
+          </li>
+          <li>
+              <input type="radio" name="selector" id="noneduedwhite" value="COLLEGE-EDUCATED WHITE">
+              <label for="noneduedwhite">Non Edued White</label>
+              <div class="check"><div class ="inside"></div></div>
+          </li>
+          <li>
+              <input type="radio" name="selector" id="black" value="BLACK">
+              <label for="black">Black</label>
+              <div class="check"><div class ="inside"></div></div>
+          </li>
+
+          <li>
+              <input type="radio" name="selector" id="His/Latino" value="HISPANIC/LATINO">
+              <label for="His/Latino">Hispan /Latino</label>
+              <div class="check"><div class ="inside"></div></div>
+          </li>
+          <li>
+              <input type="radio" name="selector" id="Asian/Other" value="ASIAN/OTHER">
+              <label for="Asian/Other">Asian /Other</label>
+              <div class="check"><div class ="inside"></div></div>
+          </li>
+          <li>
+              <input type="radio" name="selector" id="Trump" value="TRUMP">
+              <label for="Trump">Trump</label>
+              <div class="check"><div class ="inside"></div></div>
+          </li>
+          <li>
+              <input type="radio" name="selector" id="Clinton" value="CLINTON">
+              <label for="Clinton">Clinton</label>
+              <div class="check"><div class ="inside"></div></div>
+          </li>
+           <li>
+              <input type="radio" name="selector" id="Reset" value="RESET">
+              <label for="Reset">Reset</label>
+              <div class="check"><div class ="inside"></div></div>
+          </li>
+          <li>
+              <input type="radio" name="selector" id="Electoral" value="ELECTORAL VOTES">
+              <label for="Electoral">Electoral Votes</label>
+              <div class="check"><div class ="inside"></div></div>
+          </li>
+      </ul>
+    </div>
+</div>
+
+  <div class="container" id = "mapcontainer">
+    <div class="maps">
+      <div id = "usmap1"></div>
+      <div class="hoverpie"><h5 class="g-hed" style="text-align: center"></h5></div>
+      <div id = "maptooltip"></div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="g-chart"></div>
+  </div>
+
+  <div class="container">
+    <div class="controls-placeholder"></div>
+    <div class="controls">
+      <div class="electoral-votes-sticky">
+        <div class="title">Electoral Votes:</div>
+        <div class="party-container dems">
+          <div data-party="D" class="elec leader">
+            <span class="party">D</span>
+            <span class="value ev">332</span>
+            <span class="value ck">&nbsp;✔</span>
+          </div>
+        </div>
+        <div class="party-container reps">
+          <div data-party="R" class="elec">
+            <span class="party">R</span>
+            <span class="value ev">206</span>
+            <span class="value ck">&nbsp;✔</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+  <div class = "state-charts">
+    <div class = "state-chart-header"> A Breakdown Of The Demographic Groups</div>
+      <div class="state-chartNCEW" data-category="NCEW">
+        <div class="cat"> Non-College-Educated White</div>
+        <div class="chart"></div>
+        <div class="description">
+          <p></p>
+        </div>
+      </div>
+      <div class="state-chartCEW" data-category="CEW">
+        <div class="cat"> College-Educated White</div>
+        <div class="chart"></div>
+        <div class="description">
+          <p></p>
+        </div>
+      </div>
+      <div class="state-chartBlack" data-category="Black">
+        <div class="cat"> Black</div>
+        <div class="chart"></div>
+        <div class="description">
+          <p></p>
+        </div>
+      </div>
+      <div class="state-chartLatino" data-category="Latino">
+        <div class="cat"> Latino/Hispanic</div>
+        <div class="chart"></div>
+        <div class="description">
+          <p></p>
+        </div>
+      </div>
+      <div class="state-chartA" data-category="Asian">
+        <div class="cat"> Asian/Other</div>
+        <div class="chart"></div>
+        <div class="description">
+          <p></p>
+        </div>
+      </div>
+      <script src="js/nonwhite3.js"></script>
+      <script src="js/white3.js"></script>
+      <script src="js/Black3.js"></script>
+      <script src="js/Latino3.js"></script>
+      <script src="js/Asian3.js"></script>
+    </div>
+  </div>
+
+
+  <div class="container">
+    <div id="footer">
+      <div class="notes"><p>In most states, the winner of the popular vote gets all of the state's electoral votes. Maine and Nebraska award one electoral vote to the winner of the popular vote in each congressional district and two electoral votes to the statewide winner. The model used here allocates the congressional district electoral votes in those states separately from the statewide electoral votes.</p>
+      </div>
+      <div class="additional-credits"><p>Additional contributions from <a href="https://fivethirtyeight.com/contributors/allison-mccann/">Allison McCann</a>.</p>
+      </div>
+      <div class="sources">
+      <p>Sources:
+        Sources: Edison Media Research/Mitofsky International (2004/2008/2012 exit polls); U.S. Census Bureau, Current Population Survey (turnout rates by race/ethnicity); U.S. Census Bureau, American Community Survey (population estimates); Cook Political Report (election results; compiled from official sources).</p>
+      </div>
+    </div>
+  </div>
+  <div class = "container">
+    <p id = "starter" >Start Test</p>
+    <form action = "https://formspree.io/ylin6@wpi.edu" method="POST">
+    <div class = "questionairetest" style="display: none">
+      <p>1. What's the vote rate for Trump in KS?</p>
+          <input class="option" type="radio" name="question1" value=1>62.5%<br>
+          <input class="option" type="radio" name="question1" value="right">59.4%<br>
+          <input class="option" type="radio" name="question1" value=3>55.2%<br>
+          <input class="option" type="radio" name="question1" value=4>It's too hard to find. I choose to skip.</br>
+
+      <p class = "clicknextbutton" >Next</p>
+    </div>
+
+    <div class = "questionairetest" style="display: none">
+      <p>2. Among CA, NV, UT, AZ, in which of the following state do Non-colleged White has the highest vote proportion ?</p>
+
+          <input class="option" type="radio" name="question2" value=1>CA<br>
+          <input class="option" type="radio" name="question2" value="right">UT<br>
+          <input class="option" type="radio" name="question2" value=3>AZ<br>
+          <input class="option" type="radio" name="question2" value=4>It's too hard to find. I choose to skip.</br>
+
+      <p class = "clicknextbutton" >Next</p>
+    </div>
+    <div class = "questionairetest" style="display: none">
+      <p>3. Which of the following statement is TRUE</p>
+
+          <input class="option" type="radio" name="question3" value="right">In Southeastern Region, BLACK has higher vote proportion than other regions.<br>
+          <input class="option" type="radio" name="question3" value=2>In general, Colleged White has higher vote proportion than other group<br>
+          <input class="option" type="radio" name="question3" value=3>In FL, CLINTON got lowest vote rate than ssibling states.<br>
+          <input class="option" type="radio" name="question3" value=4>It's too hard to find. I choose to skip.</br>
+
+      <p class = "clicknextbutton" >Next</p>
+    </div>
+    <div class = "questionairetest" style="display: none">
+      <p>4. In CA, FL,TX, which of the state has the HIGHest HISPANIC/LATINO vote proportion</p>
+
+          <input class="option" type="radio" name="question4" value=1>FL<br>
+          <input class="option" type="radio" name="question4" value=2>TX<br>
+          <input class="option" type="radio" name="question4" value="right">CA<br>
+          <input class="option" type="radio" name="question4" value=4>It's too hard to find. I choose to skip.</br>
+
+      <p class = "clicknextbutton" >Next</p>
+    </div>
+    <div class = "questionairetest" style="display: none">
+      <p>5. For college-educated white group, how many number of states with Trump vote rate smaller than 50% ?</p>
+
+          <input class="option" type="radio" name="question5" value=1>15<br>
+          <input class="option" type="radio" name="question5" value=2>20<br>
+          <input class="option" type="radio" name="question5" value="right">25<br>
+          <input class="option" type="radio" name="question5" value=4>It's too hard to find. I choose to skip.</br>
+
+      <p class = "clicknextbutton" >Next</p>
+    </div>
+    <div class = "questionairetest" style="display: none">
+      <p>6. For Latino group, compare to Romney at 2012, does Trump receive lower vote?</p>
+          <input class="option" type="radio" name="question6" value=1>Yes<br>
+          <input class="option" type="radio" name="question6" value="right">No<br>
+          <input class="option" type="radio" name="question6" value=4>It's too hard to find. I choose to skip.</br>
+      <p class = "clicknextbutton" >Next</p>
+    </div>
+    <div class = "endpage" style = "display: none">
+      <p> Question finished! Please send the JSON file to author.</p>
+      <h1> Thank you!</h1>
+      <input type = "hidden" id = "AnswerTime" name = "AnswerTime">	
+      <input type="submit" value="Mail the result to author.">
+      <!--<a id ="downloadAnchorElem">Click here to download JSON file.</a>-->
+    </div>
+
+  </div>
+  <script>
+    var totalQuestions = $('.questionairetest').length;
+    var currentQuestion = 0;
+    var resultOutput=[];
+    var timeforQuestionStart = undefined;
+    $questions = $('.questionairetest');
+    $(document).ready(function(){
+      $("p#starter").click(function(){
+        $("p#starter").hide();
+        $($questions.get(currentQuestion)).fadeIn();
+        timeforQuestionStart = new Date().getTime();
+      })
+    })
+    $(".clicknextbutton").click(function(){
+      currentQuestion ++;
+      var questionData = {};
+      var currentQuestionName = "question"+currentQuestion;
+      questionData["question"] = currentQuestionName;
+      $($questions.get(currentQuestion-1)).fadeOut(function () {
+          judgestr = "input[name = '" + currentQuestionName + "']:checked"
+          var radioValue = $(judgestr).val()
+          questionData["value"] = radioValue
+
+        questionData["time"] = new Date().getTime() - timeforQuestionStart;
+        resultOutput.push(questionData);
+        if (currentQuestion == totalQuestions){
+	  document.getElementById("AnswerTime").value = JSON.stringify(resultOutput);
+          $("div.endpage").fadeIn();
+        }else{
+          $($questions.get(currentQuestion)).fadeIn();
+          timeforQuestionStart =new Date().getTime();
+        }
+      })
+    })
+    $("#downloadAnchorElem").click(function(){
+      var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(resultOutput));
+      var dlAnchorElem = document.getElementById('downloadAnchorElem');
+      dlAnchorElem.setAttribute("href", dataStr);
+      dlAnchorElem.setAttribute("download", "questionaire.json");
+    })
+
+    function SendByMail() {
+		    var body = JSON.stringify(resultOutput);
+
+		    // Configure mailto
+		    var uri = "mailto:xwang16@wpi.edu?subject=";
+		        uri += encodeURIComponent(document.title);
+		        uri += "&body=";
+		        uri += encodeURIComponent(body);
+		        window.location.href = uri;
+		}
+   $("#sendByEmail").on('click', function(){
+				SendByMail();
+			});
+
+  </script>
+  <div id="related" style="display: block;" class="container clearfix"><h3>RELATED STORIES</h3>
+  <div id="related-1" class="related one">
+    <a href="https://fivethirtyeight.com/features/what-you-need-to-know-about-frances-far-right/">
+      <img src="./indexsample/ap_17095693303201.jpg" alt="What You Need To Know About France’s Far Right">
+    </a>
+    <h2>
+      <a href="https://fivethirtyeight.com/features/what-you-need-to-know-about-frances-far-right/">What You Need To Know About France’s Far Right</a>
+    </h2>
+  </div>
+  <div id="related-2" class="related two"><a href="https://fivethirtyeight.com/features/should-the-freedom-caucus-be-afraid-of-donald-trump/"><img src="./indexsample/ap_17082729293760.jpg" alt="Should The Freedom Caucus Be Afraid Of Donald Trump?"></a><h2><a href="https://fivethirtyeight.com/features/should-the-freedom-caucus-be-afraid-of-donald-trump/">Should The Freedom Caucus Be Afraid Of Donald Trump?</a></h2></div>
+  <div id="related-3" class="related three"><a href="https://fivethirtyeight.com/features/dissecting-trumps-most-rabid-online-following/"><img src="./indexsample/thedonaldtrumpsubredditalgebra-4x3.jpg" alt="Dissecting Trump’s Most Rabid Online Following"></a><h2><a href="https://fivethirtyeight.com/features/dissecting-trumps-most-rabid-online-following/">Dissecting Trump’s Most Rabid Online Following</a></h2></div>
+  <div id="related-4" class="related four"><a href="https://fivethirtyeight.com/features/republicans-could-pay-a-price-for-ditching-trump-even-if-hes-unpopular/"><img src="./indexsample/gettyimages-543425704.jpg" alt="Republicans Could Pay A Price For Ditching Trump — Even If He’s Unpopular"></a><h2><a href="https://fivethirtyeight.com/features/republicans-could-pay-a-price-for-ditching-trump-even-if-hes-unpopular/">Republicans Could Pay A Price For Ditching Trump — Even If He’s Unpopular</a></h2></div>
+  <div id="related-5" class="related five"><a href="https://fivethirtyeight.com/features/there-really-was-a-liberal-media-bubble/"><img src="./indexsample/nateessay-09-4x3.jpg" alt="There Really Was A Liberal Media Bubble"></a><h2><a href="https://fivethirtyeight.com/features/there-really-was-a-liberal-media-bubble/">There Really Was A Liberal Media Bubble</a></h2></div>
+  </div>
+  <div id="entry-comments" class="fte-expandable container"><h3 id="fte-expandable-title">Comments<span class="add-comment">Add Comment</span>    <span id="fte-expandable-icon"></span>
+    </h3>
+    <div id="entry-comments-content" style="display: none" class="fte-expandable-content">
+      <div id="fb-comments" data-href="http://projects.fivethirtyeight.com/2016-swing-the-election/" data-numposts="5" data-colorscheme="light" data-width="100%" data-order-by="reverse_time" class="fb-comments fb_iframe_widget"></div></div>
+  </div>
+  <div id="colophon" class="site-footer js">
+    <div class="site-wrapper footer-main-content">
+      <div class="footer-section-get-more">Get more FiveThirtyEight</div>
+      <div class="footer-section-primary-links"><ul class="footer-menu"><li class="footer-menu-item"><a href="http://fivethirtyeight.com/newsletter/">Newsletter</a></li><li class="footer-menu-item"><a href="http://fivethirtyeight.com/tag/fivethirtyeight-podcasts/">Podcasts</a></li><li class="footer-menu-item"><a href="https://twitter.com/fivethirtyeight">Twitter</a></li><li class="footer-menu-item"><a href="https://www.facebook.com/fivethirtyeight">Facebook</a></li><li class="footer-menu-item"><a href="https://github.com/fivethirtyeight">Github</a></li><li class="footer-menu-item"><a href="http://fivethirtyeight.com/datalab/fear-not-readers-we-have-rss-feeds/">RSS</a></li></ul>
+      </div>
+      <div class="footer-section-secondary-links"><ul class="footer-menu"><li class="footer-menu-item"><a href="http://fivethirtyeight.com/contact/">Contact</a></li><li class="footer-menu-item"><a href="http://fivethirtyeight.com/jobs/">Jobs</a></li><li class="footer-menu-item"><a href="http://fivethirtyeight.com/masthead/">Masthead</a></li><li class="footer-menu-item"><a href="https://projects.fivethirtyeight.com/2016-swing-the-election/#footer-additional-info" id="additional-info-toggle" class="additional-info-toggle">Privacy and Terms of Service</a></li></ul>
+      </div>
+    </div>
+    <div id="footer-additional-info" class="footer-section-additional-info">
+      <div class="site-wrapper"><button id="close-additional-info" class="close-additional-info"><span class="visually-hidden">Close Additional Information</span></button><a href="http://disneytermsofuse.com/">Terms of Use</a> and <a href="https://disneyprivacycenter.com/">Privacy Policy</a> and Safety Information/<a href="https://disneyprivacycenter.com/notice-to-california-residents/">Your California Privacy Rights</a>/<a href="https://disneyprivacycenter.com/kids-privacy-policy/english/">Children's Online Privacy Policy</a> are applicable to you. ©2015 ESPN Internet Ventures. All rights reserved. <a href="https://preferences-mgr.truste.com/?type=espn&amp;affiliateId=148">Interest-Based Ads.</a>
+      </div>
+    </div>
+  </div>
+  <script src="./indexsample/common.js.download" defer="defer"></script>
+  <div id="fb-root"></div>
+  <script type="text/javascript">
+    mapjsrun()
+  </script>
+
+  <script type="text/javascript">
+    document.getElementById("facebook-sharer").onmousedown = function() {
+      updateForSocial( this, 'facebook' );
+      return false;
+    }
+    document.getElementById("twitter-sharer").onmousedown = function() {
+      updateForSocial( this, 'twitter' );
+      return false;
+    }
+    document.getElementById("fte-expandable-title").onclick = function() {
+      if (document.getElementById("fte-expandable-icon").classList.contains('fte-open')) {
+        document.getElementById("entry-comments-content").style.display = "none";
+      } else {
+        (function (d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s);
+          js.id = id;
+          js.src = "https://connect.facebook.net/en_US/sdk.js#version=v2.6&xfbml=1&appId=797620670264818";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+        document.getElementById("entry-comments-content").style.display = "block";
+      }
+      document.getElementById("fte-expandable-icon").classList.toggle("fte-open");
+    }
+  </script>
+
+  <!-- Twitter -->
+  <script type="text/javascript">
+  !function(d,s,id){
+    var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';
+    if(!d.getElementById(id)){
+      js=d.createElement(s);
+      js.id=id;js.src=p+"://platform.twitter.com/widgets.js";
+      fjs.parentNode.insertBefore(js,fjs);
+    }
+  }(document,"script","twitter-wjs");
+  </script>
+  <!-- End Twitter -->
+  <iframe id="rufous-sandbox" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" style="position: absolute; visibility: hidden; display: none; width: 0px; height: 0px; padding: 0px; border: none;" title="Twitter analytics iframe" src="./indexsample/saved_resource(3).html">
+</iframe>
+
+
+</body>
+</html>

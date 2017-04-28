@@ -1,6 +1,11 @@
-CS582-17S Grad Final
+CS582-17S Grad Final **Web Interactivity Perception Experiment**
 ---
-Check Point: Apr 20
+Check Point-1: Apr 20
+Check Point-2: Apr 27
+
++ Page Link1 (**No Interactivity**): https://coyawa.github.io/gradfinal/index1.html
++ Page Link2 (**Semi Interactivity**): https://coyawa.github.io/gradfinal/index2.html
++ Page Link3 (**High Interactivity**): https://coyawa.github.io/gradfinal/index3.html
 
 **/code:** data process code  
 **/paper:** final paper latex  

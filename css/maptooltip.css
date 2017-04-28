@@ -1,0 +1,43 @@
+#maptooltip {   
+	position: absolute;           
+	text-align: center;
+	padding: 20px;             
+	margin: 10px;
+	font: 12px sans-serif;        
+	background: lightsteelblue;   
+	border: 1px;      
+	border-radius: 2px;           
+	pointer-events: none;
+	z-index:99999999；         
+}
+#maptooltip h4{
+	margin:0;
+	font-size:14px;
+	color: #ffffff
+}
+#maptooltip{
+	background:rgba(0,0,0,0.9);
+	border:1px solid grey;
+	border-radius:5px;
+	font-size:12px;
+	width:auto;
+	padding:4px;
+	color:white;
+	opacity:0;
+}
+#maptooltip table{
+	table-layout:fixed;
+}
+#maptooltip tr td{
+	padding:0;
+	margin:0;
+}
+#maptooltip tr td:nth-child(1){
+	width:50px;
+}
+#maptooltip tr td:nth-child(2){
+	text-align:center;
+}
+#state_path:hover{
+	fill-opacity:0.5;
+}

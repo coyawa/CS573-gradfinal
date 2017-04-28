@@ -1,0 +1,10 @@
+div.hoverpie, div#usmap1{
+	float:left;
+}
+div.hoverpie{
+	position: relative;
+	top: 50px;
+}
+div#mapcontainer{
+	height:360px
+}
