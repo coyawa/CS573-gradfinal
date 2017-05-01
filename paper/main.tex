@@ -12,7 +12,7 @@
 \usepackage{url}
 \usepackage{hyperref}
 \usepackage{caption}
-\linespread{1}
+\linespread{1.1}
 \usepackage{float}
 \setlength{\parskip}{0.4em}
 \usepackage{subcaption}
@@ -83,10 +83,8 @@ At the same time, the data science, a latest and hottest thing started to join t
 
 But, how the interactive and user experience revolution affect the audience behavior of the online news website? We have no answer yet, so we made a 3-LEVEL Interactive Comparison method, which can collect the audience behavior data to analysis the different level interactive influence through the multivariate test on the same one data-driven article. In this method, at first, we deliver the no interactive news page, then we deliver news with part of interaction like tool-tips and mouse hover, finally we deliver the news with tips about how to use the interaction and the bi-direction interaction (direction-1: Overview to Detail, direction-2: Detail to Overview). To collect the results of audience pattern cognition about the main idea and some details of this article, we also build a back-end system with questionnaire to collect the time spend of audience.
 
- Through this practical experiment, we dedicate to explore the relationship between user perception and interactive, two hypothesis are proposed:
- 1. Higher level of interactive visualization can improve user's perception for data journalism
- 2. Higher level of interactive visualization can reduce the misleading by article.
- 
+ Through this practical experiment, we dedicate to explore the relationship between user perception and interactive, four hypotheses are proposed in our study, which are listed in Section 3.
+
  To verify these hypothesis, we designed an 3-level comparison interactive method which with the 3 levels of the interactive and visualization on the same article, then collect the users-stay time with the content understanding questionnaire through the back-end information collect system. 
 
 To evaluate our method and hypothesis, we used a real world article from FiveThirtyEight.com and reproduce it with three versions then put it online. This article contains the information about 2016 US presidential election, include the vote rate for Trump among different states and different race.
@@ -116,6 +114,14 @@ These articles, methods, and experiments gave us a lot of knowledge of the visua
         \end{tabular}
      \caption{Three level of Interactive}
 \end{table}
+\subsection{Hypotheses}
+Based on the related work, we decide to divide the interactivity perception experiment into three levels. The hypothesis we put forward are listed as follows.
+
+\textbf{Hypothesis 1.} Users are easier to perceive the information with higher interaction.\\
+\textbf{Hypothesis 2.} Users are more willing to engage in the story with higher interaction.\\
+\textbf{Hypothesis 3.} Higher level of interactive visualization can improve user's perception for data journalism.\\
+\textbf{Hypothesis 4.} Higher level of interactive visualization can reduce the misleading by article.\\
+
 \subsection{Interection Levels Design}
 In this experiment we design three levels of interactive visualization as indicated in table 1. To control the noise, all of the three levels of interactive visualization are embeded in an news website.\\
 \textbf{Level 0:} Designed with zero interaction. The website contains the original article, and static U.S. map, scatter plot, with tool tips that demonstrate the given data. \\
@@ -209,18 +215,28 @@ The Fig.3 shows the the box plot of time spend for each question. We can see tha
   \label{fig:6}
 \end{figure}
 \subsection{Time Spend Evaluation}
-Fig.4(a) show the average time spend for three levels in each question. From the bar chart we can see that in general, users tend to spend less on Level 1 than Level 0. However, when it comes to the high interactivity(Level2), the results shows that the users might spend more time on answering questions.
+Fig.4(a) shows the average time spend for three levels in each question. From the bar chart we can see that in general, users tend to spend less on Level 1 than Level 0. However, when it comes to the high interactivity(Level2), the results shows that the users might spend more time on answering questions.
 \subsection{Accuracy and Skip Rate Evaluation}
-\textbf{Accuracy Rate.} Fig.4(b) shows the average accuracy rate for three levels in each question. For Question 1-4(Map Visualizations), each levels results shows somewhat random, but combined with the skip rate, we can gain some insight from them. For question 5, surprisingly, the higher interactive level doesn't helps users to get higher correctness.
+\textbf{Accuracy Rate.} Fig.4(b) shows the average accuracy rate for three levels in each question. For Question 1-4(Map Visualizations), the average accuracy rate of each level shows somewhat random, but combined with the skip rate, we can gain some insight from them. For Question 5-6 (Scatter Plot Visualization), the average accuracy are expected to 
 
 \textbf{Skip Rate.} Fig.4(c) shows the average skip rate for three levels in each question. For Question 1-4(Map Visualizations), the level 0 shows a significant high skip rate than other two levels of interactivity. \\
 
+\begin{figure} [H]
+  \centering
+  \includegraphics[width=0.32\textwidth]{MisleadingQ6.png}
+  \caption{Fig 5. The comparison between the "Misleading Answer" and "Right Answer".}
+  \label{fig:6}
+\end{figure}
+
 \section{Discussion}
 \large
-\subsection{Test Result Analysis}
+\subsection{Test Result Findings}
+This part will discuss the test result in details and conclude the insights from the test result.
 
+For Question 1-4, time spend for Level 1 is less than Level 0, while time spend for Level 3 is more than the other two. So we can conclude that Some interactivity could help users to recognize the data faster. However, if the interactivity is too complex, users might have trouble the use the interaction. Therefore, designers must measure the complexity of their interactivity. The accuracy rate is random, so we can conclude that designed unsuitable interactivity can cause a misleading effect. However, since the Level 0 shows a significant higher skip rate in Question 1-4, we can conclude that the rich interactivity would make a users engage more in the test. The low skip rate of Level 1 and Level 2 indicates that a rich interactivity would make users more willing to participate in the test and feel more confident on the test.
 
 \subsection{Limitations and Future Research}
+
 We took a step out to evaluate if the different level of interactive can affect the audience of the news papers online in data journalism. For the experiment itself, we used five kinds of common interactive method in the experiment, as the front-end technology fast changing, the future research should consider not only the classic methods but the latest visualization technology. Meanwhile, with the time limit, we can not find more random sample to join this experiment, it should be improved in the future work.
 
 In the next stage, we decided to make a crowd-source experiment and collect more different kinds of data-driven news like entertainment and sport to balance the bias of the different audience reading preference, to make the result more convincing.
@@ -262,8 +278,6 @@ X
 \bibitem{c13} Web Interactivity Perception Experiment on Real articles L0: https://yiminlin1994.github.io/gradfinal/index1.html
 \bibitem{c14} Web Interactivity Perception Experiment on Real articles L1: https://yiminlin1994.github.io/gradfinal/index2.html
 \bibitem{c15} Web Interactivity Perception Experiment on Real articles L2: https://yiminlin1994.github.io/gradfinal/index3.html 
-\bibitem{c13} 
-\bibitem{c13} 
 
 
 \end{thebibliography}
