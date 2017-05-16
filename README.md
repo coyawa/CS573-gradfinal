@@ -24,9 +24,9 @@ Unfortunately, there is no evidence shows all kinds of the visualization suit to
 In this paper, we collected all the visualization interactivity approach, organized and analysis them. Then we designed a multivariate test which use the same article from novel media with different visual interactivity to evaluate the effectiveness of different visual interactivity methods.
 
 ### Experiment Site:
-+ Page Link1 (**No Interactivity**): https://coyawa.github.io/CS573-gradfinal/index1.html
-+ Page Link2 (**Semi Interactivity**): https://coyawa.github.io/CS573-gradfinal/index2.html
-+ Page Link3 (**Full Interactivity**): https://coyawa.github.io/CS573-gradfinal/index3.html
++ Page Link1 (**No Interactivity**): https://wangcongyang.com/CS573-gradfinal/index1.html
++ Page Link2 (**Semi Interactivity**): https://wangcongyang.com/CS573-gradfinal/index2.html
++ Page Link3 (**Full Interactivity**): https://wangcongyang.com/CS573-gradfinal/index3.html
 
 ### Folder:
 **/code:** data process code  
